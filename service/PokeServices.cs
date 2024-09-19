@@ -12,58 +12,42 @@ namespace service
 {
     public class PokeServices
     {
-        public List<Pokemon> list()
+        public List<Pokemon> listSP()
         {
             List<Pokemon> list = new List<Pokemon>();
-            SqlConnection conection = new SqlConnection();
-            SqlCommand sqlCommand = new SqlCommand();
-            SqlDataReader reader;
-
+            DataAccess data = new DataAccess();
             try
             {
-                conection.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
-                sqlCommand.CommandType = System.Data.CommandType.Text;
-                sqlCommand.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id\r\nFrom POKEMONS P, ELEMENTOS E, ELEMENTOS D\r\nWhere E.Id = P.IdTipo\r\nAnd D.Id = P.IdDebilidad And P.Activo = 1";
-                sqlCommand.Connection = conection;
-
-                conection.Open();
-                reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
+                data.setProcedure("storedPokeList");
+                data.runReader();
+                while (data.Reader.Read())
                 {
                     Pokemon aux = new Pokemon();
-                    aux.Id = (int)reader["Id"];
-                    aux.Number = reader.GetInt32(0);
-                    aux.Name = (string)reader["Nombre"];
-                    aux.Description = (string)reader["Descripcion"];
-                    // First way to solve the problem when UrlImage is null
-
-                    //if(!(reader.IsDBNull(reader.GetOrdinal("UrlImagen"))))
-                    //aux.UrlImage = (string)reader["UrlImagen"];
-
-                    // Second way to solve the problem when UrlImage is null
-                    if (!(reader["UrlImagen"] is DBNull))
-                    aux.UrlImage = (string)reader["UrlImagen"];
-
+                    aux.Id = (int)data.Reader["Id"];
+                    aux.Number = data.Reader.GetInt32(0);
+                    aux.Name = (string)data.Reader["Nombre"];
+                    aux.Description = (string)data.Reader["Descripcion"];
+                    if (!(data.Reader["UrlImagen"] is DBNull))
+                        aux.UrlImage = (string)data.Reader["UrlImagen"];
                     aux.Type = new Element();
-                    aux.Type.Id = (int)reader["IdTipo"];
-                    aux.Type.Description = (string)reader["Tipo"];
+                    aux.Type.Id = (int)data.Reader["IdTipo"];
+                    aux.Type.Description = (string)data.Reader["Tipo"];
                     aux.Weakness = new Element();
-                    aux.Weakness.Id = (int)reader["IdDebilidad"];
-                    aux.Weakness.Description = (string)reader["Debilidad"];
-
+                    aux.Weakness.Id = (int)data.Reader["IdDebilidad"];
+                    aux.Weakness.Description = (string)data.Reader["Debilidad"];
                     list.Add(aux);
                 }
-                conection.Close();
                 return list;
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+            finally
+            {
+                data.closeConnection();
+            }
         }
-
         public void add(Pokemon newone)
         {
             DataAccess data = new DataAccess();
@@ -163,13 +147,13 @@ namespace service
                                 break;
                             case "Less than":
                                 query += "Numero < " + filter;
-                                break;                                
+                                break;
                             default:
                                 query += "Numero = " + filter;
                                 break;
                         }
                         break;
-                    
+
                     case "Name":
                         switch (criteria)
                         {
@@ -184,7 +168,7 @@ namespace service
                                 break;
                         }
                         break;
-                    
+
                     case "Description":
                         switch (criteria)
                         {
@@ -199,7 +183,7 @@ namespace service
                                 break;
                         }
                         break;
-                                                         
+
                     default:
                         break;
                 }

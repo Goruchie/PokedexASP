@@ -28,6 +28,11 @@ namespace service
             sqlCommand.CommandType = System.Data.CommandType.Text;
             sqlCommand.CommandText = query;            
         }
+        public void setProcedure(string sp)
+        {
+            sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            sqlCommand.CommandText = sp;
+        }
 
         public void runReader()
         {
