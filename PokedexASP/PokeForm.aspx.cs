@@ -9,11 +9,18 @@ namespace PokedexASP
 {
     public partial class PokeForm : System.Web.UI.Page
     {
+        public string TypeOfPage { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(Request.QueryString["Id"] == null)
+            {
+                TypeOfPage = "New ";
+            }
+            else
+            {
+                TypeOfPage = "Modify ";
+            }
         }
-
         protected void btnAccept_Click(object sender, EventArgs e)
         {
 
