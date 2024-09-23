@@ -54,6 +54,31 @@ namespace service
 
             try
             {
+                data.setProcedure("storedAddPokemon");
+                data.setParameter("@Name", newone.Name);
+                data.setParameter("@Number", newone.Number);
+                data.setParameter("@Description", newone.Description);
+                data.setParameter("@IdType", newone.Type.Id);
+                data.setParameter("@IdWeakness", newone.Weakness.Id);
+                data.setParameter("@Img", newone.UrlImage);
+                data.runAction();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.closeConnection();
+            }
+        }
+        public void addSP(Pokemon newone)
+        {
+            DataAccess data = new DataAccess();
+
+            try
+            {
                 data.setQuery("Insert into POKEMONS (Numero, Nombre, Descripcion, Activo, IdTipo, IdDebilidad, UrlImagen)values(" + newone.Number + ", '" + newone.Name + "', '" + newone.Description + "', 1, @idTipo, @idDebilidad, @urlImagen)");
                 data.setParameter("@idTipo", newone.Type.Id);
                 data.setParameter("@idDebilidad", newone.Weakness.Id);
