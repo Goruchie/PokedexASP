@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <label class="h1 mb-5 d-flex justify-content-start display-1"><%:TypeOfPage %>Pokemon</label>
     <div class="container">
         <div class="row">
@@ -43,22 +44,25 @@
                         <asp:TextBox ID="txtDescription" TextMode="MultiLine" runat="server" CssClass="form-control" />
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-2 col-form-label text-end">Url Image:</label>
-                    <div class="col-sm-10">
-                        <asp:TextBox ID="txtUrlImage" runat="server" CssClass="form-control" />
-                    </div>
+                <asp:UpdatePanel class="mb-3 row" ID="UpdatePanelImg" runat="server">
+                    <ContentTemplate>
+
+                        <label class="col-sm-2 col-form-label text-end">Url Image:</label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="txtUrlImage" OnTextChanged="txtUrlImage_TextChanged" runat="server" CssClass="form-control" />
+                        </div>
+                        </div>
+                        </div>
+            <div class="col-6">
+                <asp:Image ID="pokeImage" CssClass="pokeImage w-100" ImageUrl="Assets/Images/empty-pokemon.png" runat="server" />
+            </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div class="d-flex justify-content-start mt-3">
+                    <asp:Button ID="btnAccept" Text="Accept" runat="server" CssClass="btn btn-dark btn-lg me-2" OnClick="btnAccept_Click" />
+                    <a class="btn btn-dark btn-lg" href="/PokeList.aspx">Cancel</a>
                 </div>
             </div>
-
-            <div class="col-6">
-
-                <asp:Image CssClass="pokeImage w-100" ImageUrl="Assets/Images/empty-pokemon.png" runat="server" />
-            </div>
-        </div>
-        <div class="d-flex justify-content-start">
-            <asp:Button ID="btnAccept" Text="Accept" runat="server" CssClass="btn btn-dark btn-lg me-2" OnClick="btnAccept_Click" />
-            <a class="btn btn-dark btn-lg" href="/PokeList.aspx">Cancel</a>
         </div>
     </div>
 </asp:Content>

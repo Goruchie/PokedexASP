@@ -15,6 +15,15 @@ namespace PokedexASP
     {
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// txtId control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace PokedexASP
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
+        /// UpdatePanelImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelImg;
+
+        /// <summary>
         /// txtUrlImage control.
         /// </summary>
         /// <remarks>
@@ -76,6 +94,15 @@ namespace PokedexASP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUrlImage;
+
+        /// <summary>
+        /// pokeImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image pokeImage;
 
         /// <summary>
         /// btnAccept control.

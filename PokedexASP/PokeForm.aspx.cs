@@ -25,5 +25,10 @@ namespace PokedexASP
         {
 
         }
+
+        protected void txtUrlImage_TextChanged(object sender, EventArgs e)
+        {
+            pokeImage.ImageUrl = txtUrlImage.Text;
+        }
     }
 }
