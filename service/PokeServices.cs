@@ -82,31 +82,6 @@ namespace service
                 throw;
             }
         }
-        public void add(Pokemon newone)
-        {
-            DataAccess data = new DataAccess();
-
-            try
-            {
-                data.setProcedure("storedAddPokemon");
-                data.setParameter("@Name", newone.Name);
-                data.setParameter("@Number", newone.Number);
-                data.setParameter("@Description", newone.Description);
-                data.setParameter("@IdType", newone.Type.Id);
-                data.setParameter("@IdWeakness", newone.Weakness.Id);
-                data.setParameter("@Img", newone.UrlImage);
-                data.runAction();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                data.closeConnection();
-            }
-        }
         public void addSP(Pokemon newone)
         {
             DataAccess data = new DataAccess();
