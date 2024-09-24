@@ -48,6 +48,40 @@ namespace service
                 data.closeConnection();
             }
         }
+        public List<Pokemon> getPokemon(int @id)
+        {
+            List<Pokemon> list = new List<Pokemon>();
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setProcedure("storedPokemon");
+                data.setParameter("@id", id);
+                data.runReader();
+                while (data.Reader.Read())
+                {
+                    Pokemon aux = new Pokemon();
+                    aux.Id = @id;
+                    aux.Number = data.Reader.GetInt32(0);
+                    aux.Name = (string)data.Reader["Nombre"];
+                    aux.Description = (string)data.Reader["Descripcion"];
+                    if (!(data.Reader["UrlImagen"] is DBNull))
+                        aux.UrlImage = (string)data.Reader["UrlImagen"];
+                    aux.Type = new Element();
+                    aux.Type.Id = (int)data.Reader["IdTipo"];
+                    aux.Type.Description = (string)data.Reader["Tipo"];
+                    aux.Weakness = new Element();
+                    aux.Weakness.Id = (int)data.Reader["IdDebilidad"];
+                    aux.Weakness.Description = (string)data.Reader["Debilidad"];
+                    list.Add(aux);
+                }
+                return list;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public void add(Pokemon newone)
         {
             DataAccess data = new DataAccess();
@@ -101,13 +135,13 @@ namespace service
 
             try
             {
-                data.setQuery("update POKEMONS set Numero = @number, Nombre = @name, Descripcion = @desc, UrlImagen = @img, IdTipo = @idTipo, IdDebilidad = @idDebilidad Where id = @id");
+                data.setProcedure("modifyPokemon");
                 data.setParameter("@number", poke.Number);
                 data.setParameter("@name", poke.Name);
                 data.setParameter("@desc", poke.Description);
                 data.setParameter("@img", poke.UrlImage);
-                data.setParameter("@idTipo", poke.Type.Id);
-                data.setParameter("@idDebilidad", poke.Weakness.Id);
+                data.setParameter("@typeId", poke.Type.Id);
+                data.setParameter("@weaknessId", poke.Weakness.Id);
                 data.setParameter("@id", poke.Id);
 
                 data.runAction();
