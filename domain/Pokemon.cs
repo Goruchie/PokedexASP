@@ -14,6 +14,7 @@ namespace domain
         public string Description { get; set; }
 
         public string UrlImage { get; set; }
+        public bool Active { get; set; }
 
         public Element Type { get; set; }
 

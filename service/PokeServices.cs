@@ -12,13 +12,16 @@ namespace service
 {
     public class PokeServices
     {
-        public List<Pokemon> listSP()
+        public List<Pokemon> listIsActiveRequired(bool option)
         {
             List<Pokemon> list = new List<Pokemon>();
             DataAccess data = new DataAccess();
             try
             {
-                data.setProcedure("storedPokeList");
+                if (option == false) 
+                data.setProcedure("storedPokeListF");
+                else
+                    data.setProcedure("storedPokeList");
                 data.runReader();
                 while (data.Reader.Read())
                 {
@@ -29,6 +32,8 @@ namespace service
                     aux.Description = (string)data.Reader["Descripcion"];
                     if (!(data.Reader["UrlImagen"] is DBNull))
                         aux.UrlImage = (string)data.Reader["UrlImagen"];
+                    if (option)
+                        aux.Active = (bool)data.Reader["Activo"];
                     aux.Type = new Element();
                     aux.Type.Id = (int)data.Reader["IdTipo"];
                     aux.Type.Description = (string)data.Reader["Tipo"];
@@ -148,12 +153,15 @@ namespace service
             }
         }
 
-        public void deleteLogically(int id)
+        public void deleteLogically(int id, bool active)
         {
             try
             {
                 DataAccess data = new DataAccess();
-                data.setQuery("update POKEMONS set Activo = 0 where id = @id");
+                if (active)
+                    data.setQuery("update POKEMONS set Activo = 1 where id = @id");
+                else
+                    data.setQuery("update POKEMONS set Activo = 0 where id = @id");
                 data.setParameter("@id", id);
                 data.runAction();
             }

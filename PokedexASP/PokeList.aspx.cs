@@ -15,10 +15,13 @@ namespace PokedexASP
         public int DeleteId;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
             ConfirmDelete = false;
             PokeServices service = new PokeServices();
-            dgvPokemon.DataSource = service.listSP();
+            dgvPokemon.DataSource = service.listIsActiveRequired(true);
             dgvPokemon.DataBind();            
+            }
         }
 
         protected void dgvPokemon_RowEditing(object sender, GridViewEditEventArgs e)
@@ -46,6 +49,15 @@ namespace PokedexASP
                 }
             }            
                 Response.Redirect("PokeList.aspx");
+        }
+
+        protected void cbActive_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)cb.NamingContainer;
+            int id = Convert.ToInt32(dgvPokemon.DataKeys[row.RowIndex].Value);
+            PokeServices service = new PokeServices();   
+            service.deleteLogically(id, cb.Checked);                       
         }
     }
 }

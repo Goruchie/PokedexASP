@@ -15,7 +15,7 @@ namespace PokedexASP
         protected void Page_Load(object sender, EventArgs e)
         {
             PokeServices service = new PokeServices();
-            PokeList = service.listSP();
+            PokeList = service.listIsActiveRequired(false);
             if (!IsPostBack)
             {
             repeaterID.DataSource = PokeList;
