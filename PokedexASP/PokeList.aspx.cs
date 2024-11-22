@@ -59,5 +59,10 @@ namespace PokedexASP
             PokeServices service = new PokeServices();   
             service.deleteLogically(id, cb.Checked);                       
         }
+
+        protected void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -3,7 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Pokemon List:</h1>
+    <h1 class="text-center">Pokemon List</h1>
+    <div class=" row align-items-center mb-3">
+        <label class="col-auto col-form-label">Filter</label>
+        <div class="col-3">
+            <asp:TextBox runat="server" ID="txtFilter" AutoPostBack="true" CssClass="form-control col" OnTextChanged="txtFilter_TextChanged" />
+        </div>
+    </div>
     <asp:GridView runat="server" ID="dgvPokemon" CssClass="table table-dark" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="dgvPokemon_RowEditing" OnRowDeleting="dgvPokemon_RowDeleting">
         <Columns>
             <asp:BoundField DataField="Name" HeaderText="Name" />
