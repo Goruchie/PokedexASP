@@ -3,27 +3,32 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <h1 class="text-center">Pokemon List</h1>
-    <div class=" row align-items-center mb-3">
-        <label class="col-auto col-form-label">Filter</label>
-        <div class="col-3">
-            <asp:TextBox runat="server" ID="txtFilter" AutoPostBack="true" CssClass="form-control col" OnTextChanged="txtFilter_TextChanged" />
-        </div>
-    </div>
-    <asp:GridView runat="server" ID="dgvPokemon" CssClass="table table-dark" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="dgvPokemon_RowEditing" OnRowDeleting="dgvPokemon_RowDeleting">
-        <Columns>
-            <asp:BoundField DataField="Name" HeaderText="Name" />
-            <asp:BoundField DataField="Number" HeaderText="Number" />
-            <asp:BoundField DataField="Type" HeaderText="Element" />
-            <asp:TemplateField HeaderText="Active">
-                <ItemTemplate>
-                    <asp:CheckBox runat="server" ID="cbActive" Checked='<%# Bind("Active") %>' OnCheckedChanged="cbActive_CheckedChanged" AutoPostBack="true" />
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:CommandField ButtonType="Button" EditText="✏️" ShowEditButton="true" HeaderText="Modify" ControlStyle-CssClass="btn btn-dark" />
-            <asp:CommandField ButtonType="Button" DeleteText="🗑️" ShowDeleteButton="true" HeaderText="Delete" ControlStyle-CssClass="btn btn-dark" />
-        </Columns>
-    </asp:GridView>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class=" row align-items-center mb-3">
+                <label class="col-auto col-form-label">Filter</label>
+                <div class="col-3">
+                    <asp:TextBox runat="server" ID="txtFilter" AutoPostBack="true" CssClass="form-control col" OnTextChanged="txtFilter_TextChanged" />
+                </div>
+            </div>
+            <asp:GridView runat="server" ID="dgvPokemon" CssClass="table table-dark" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="dgvPokemon_RowEditing" OnRowDeleting="dgvPokemon_RowDeleting">
+                <Columns>
+                    <asp:BoundField DataField="Name" HeaderText="Name" />
+                    <asp:BoundField DataField="Number" HeaderText="Number" />
+                    <asp:BoundField DataField="Type" HeaderText="Element" />
+                    <asp:TemplateField HeaderText="Active">
+                        <ItemTemplate>
+                            <asp:CheckBox runat="server" ID="cbActive" Checked='<%# Bind("Active") %>' OnCheckedChanged="cbActive_CheckedChanged" AutoPostBack="true" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:CommandField ButtonType="Button" EditText="✏️" ShowEditButton="true" HeaderText="Modify" ControlStyle-CssClass="btn btn-dark" />
+                    <asp:CommandField ButtonType="Button" DeleteText="🗑️" ShowDeleteButton="true" HeaderText="Delete" ControlStyle-CssClass="btn btn-dark" />
+                </Columns>
+            </asp:GridView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <div class="row d-flex justify-content-between mb-3">
         <a class="col-2 btn btn-dark" href="/PokeForm.aspx">Add</a>
         <%if (ConfirmDelete)

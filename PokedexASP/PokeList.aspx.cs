@@ -17,10 +17,12 @@ namespace PokedexASP
         {
             if (!IsPostBack)
             {
-            ConfirmDelete = false;
-            PokeServices service = new PokeServices();
-            dgvPokemon.DataSource = service.listIsActiveRequired(true);
-            dgvPokemon.DataBind();            
+                ConfirmDelete = false;
+                PokeServices service = new PokeServices();
+                //dgvPokemon.DataSource = service.listIsActiveRequired(true);
+                Session.Add("list", service.listIsActiveRequired(true));
+                dgvPokemon.DataSource = Session["list"];
+                dgvPokemon.DataBind();
             }
         }
 
@@ -34,11 +36,11 @@ namespace PokedexASP
         {
             DeleteId = (int)dgvPokemon.DataKeys[e.RowIndex].Value;
             ViewState["DeleteId"] = DeleteId;
-            ConfirmDelete = true;            
+            ConfirmDelete = true;
         }
 
         protected void btnConfirmDelete_Click(object sender, EventArgs e)
-        {            
+        {
             if (cbxConfirmDelete.Checked)
             {
                 if (ViewState["DeleteId"] != null)
@@ -47,8 +49,8 @@ namespace PokedexASP
                     DeleteId = (int)ViewState["DeleteId"];
                     service.delete(DeleteId);
                 }
-            }            
-                Response.Redirect("PokeList.aspx");
+            }
+            Response.Redirect("PokeList.aspx");
         }
 
         protected void cbActive_CheckedChanged(object sender, EventArgs e)
@@ -56,13 +58,16 @@ namespace PokedexASP
             CheckBox cb = (CheckBox)sender;
             GridViewRow row = (GridViewRow)cb.NamingContainer;
             int id = Convert.ToInt32(dgvPokemon.DataKeys[row.RowIndex].Value);
-            PokeServices service = new PokeServices();   
-            service.deleteLogically(id, cb.Checked);                       
+            PokeServices service = new PokeServices();
+            service.deleteLogically(id, cb.Checked);
         }
 
         protected void txtFilter_TextChanged(object sender, EventArgs e)
         {
-
+            List<Pokemon> list = (List<Pokemon>)Session["list"];
+            List<Pokemon> listf = list.FindAll(x => x.Name.ToUpper().Contains(txtFilter.Text.ToUpper()));
+            dgvPokemon.DataSource = listf;
+            dgvPokemon.DataBind();
         }
     }
 }
