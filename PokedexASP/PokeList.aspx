@@ -7,12 +7,49 @@
     <h1 class="text-center">Pokemon List</h1>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <div class=" row align-items-center mb-3">
+            <div class="row align-items-center mb-3">
                 <label class="col-auto col-form-label">Filter</label>
                 <div class="col-3">
                     <asp:TextBox runat="server" ID="txtFilter" AutoPostBack="true" CssClass="form-control col" OnTextChanged="txtFilter_TextChanged" />
                 </div>
+                <div class="col-3">
+                    <asp:CheckBox CssClass="" ID="ckbFilter" Text="Advanced filter" runat="server" AutoPostBack="true" />
+                </div>
             </div>
+            <%if (ckbFilter.Checked)
+                {
+            %>
+            <div class="row align-items-center mb-3">
+                <label class="col-auto col-form-label">Field</label>
+                <div class="col-1">
+                    <asp:DropDownList CssClass="form-control" runat="server">
+                        <asp:ListItem Text="Name" />
+                        <asp:ListItem Text="Number" />
+                        <asp:ListItem Text="Element" />
+                    </asp:DropDownList>
+                </div>
+                <label class="col-auto col-form-label">Criteria</label>
+                <div class="col-1">
+                    <asp:DropDownList CssClass="form-control" runat="server"></asp:DropDownList>
+                </div>
+                <label class="col-auto col-form-label">State</label>
+                <div class="col-1">
+                    <asp:DropDownList CssClass="form-control" runat="server">
+                        <asp:ListItem Text="Enabled" />
+                        <asp:ListItem Text="Disabled" />
+                        <asp:ListItem Text="All" />
+                    </asp:DropDownList>
+                </div>
+                <div class="col-auto">
+                    <asp:TextBox CssClass="col-auto form-control" runat="server" />
+                </div>
+                <asp:Button class="col-1 btn btn-dark" Text="Search" runat="server" />
+            </div>
+            <% 
+                }
+            %>
+
+
             <asp:GridView runat="server" ID="dgvPokemon" CssClass="table table-dark" AutoGenerateColumns="false" DataKeyNames="Id" OnRowEditing="dgvPokemon_RowEditing" OnRowDeleting="dgvPokemon_RowDeleting">
                 <Columns>
                     <asp:BoundField DataField="Name" HeaderText="Name" />
