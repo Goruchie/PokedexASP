@@ -13,7 +13,7 @@
                     <asp:TextBox runat="server" ID="txtFilter" AutoPostBack="true" CssClass="form-control col" OnTextChanged="txtFilter_TextChanged" />
                 </div>
                 <div class="col-3">
-                    <asp:CheckBox CssClass="" ID="ckbFilter" Text="Advanced filter" runat="server" AutoPostBack="true" />
+                    <asp:CheckBox CssClass="" ID="ckbFilter" Text="Advanced filter" runat="server" AutoPostBack="true" OnCheckedChanged="ckbFilter_CheckedChanged" />
                 </div>
             </div>
             <%if (ckbFilter.Checked)
@@ -24,7 +24,7 @@
                     <div class="row align-items-center">
                         <label class="col-auto col-form-label">Field</label>
                         <div class="col">
-                            <asp:DropDownList CssClass="form-control" runat="server">
+                            <asp:DropDownList ID="ddlField" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlField_SelectedIndexChanged" runat="server">
                                 <asp:ListItem Text="Name" />
                                 <asp:ListItem Text="Number" />
                                 <asp:ListItem Text="Element" />
@@ -32,12 +32,12 @@
                         </div>
                         <label class="col-auto col-form-label">Criteria</label>
                         <div class="col">
-                            <asp:DropDownList CssClass="form-control" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlCriteria" AutoPostBack="true" CssClass="form-control" runat="server"></asp:DropDownList>
                         </div>
                         <label class="col-auto col-form-label">State</label>
                         <div class="col">
-                            <asp:DropDownList CssClass="form-control" runat="server">
-                                <asp:ListItem Text="Enabled" />
+                            <asp:DropDownList ID="ddlState" CssClass="form-control" runat="server">
+                                <asp:ListItem Text="Active" />
                                 <asp:ListItem Text="Disabled" />
                                 <asp:ListItem Text="All" />
                             </asp:DropDownList>
@@ -47,9 +47,9 @@
                 <div class="col">
                     <div class="row align-items-center justify-content-end">
                         <div class="col-auto">
-                            <asp:TextBox CssClass="col-2 form-control" runat="server" />
+                            <asp:TextBox ID="txtAdFilter" CssClass="col-2 form-control" runat="server" />
                         </div>
-                        <asp:Button class="col-auto btn btn-dark" Text="Search" runat="server" />
+                        <asp:Button ID="btnSearch" class="col-auto btn btn-dark" Text="Search" runat="server" OnClick="btnSearch_Click" />
                     </div>
                 </div>
             </div>

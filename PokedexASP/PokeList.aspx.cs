@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,12 +19,17 @@ namespace PokedexASP
             if (!IsPostBack)
             {
                 ConfirmDelete = false;
-                PokeServices service = new PokeServices();
-                //dgvPokemon.DataSource = service.listIsActiveRequired(true);
-                Session.Add("list", service.listIsActiveRequired(true));
-                dgvPokemon.DataSource = Session["list"];
-                dgvPokemon.DataBind();
+                loadList();
             }
+        }
+
+        public void loadList()
+        {
+            PokeServices service = new PokeServices();
+            //dgvPokemon.DataSource = service.listIsActiveRequired(true);
+            Session.Add("list", service.listIsActiveRequired(true));
+            dgvPokemon.DataSource = Session["list"];
+            dgvPokemon.DataBind();
         }
 
         protected void dgvPokemon_RowEditing(object sender, GridViewEditEventArgs e)
@@ -67,6 +73,52 @@ namespace PokedexASP
             List<Pokemon> list = (List<Pokemon>)Session["list"];
             List<Pokemon> listf = list.FindAll(x => x.Name.ToUpper().Contains(txtFilter.Text.ToUpper()));
             dgvPokemon.DataSource = listf;
+            dgvPokemon.DataBind();
+        }
+        public void criteriaItems()
+        {
+            if (ddlField.SelectedValue == "Number")
+            {
+                ddlCriteria.Items.Add("Equal to");
+                ddlCriteria.Items.Add("Bigger than");
+                ddlCriteria.Items.Add("Less than");
+            }
+            else
+            {
+                ddlCriteria.Items.Add("Contains");
+                ddlCriteria.Items.Add("Starts with");
+                ddlCriteria.Items.Add("Ends with");
+            }
+        }
+
+        protected void ddlField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlCriteria.Items.Clear();
+            criteriaItems();
+        }
+
+        protected void ckbFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            txtFilter.Text = "";
+            ddlCriteria.Items.Clear();
+            criteriaItems();
+            if (!ckbFilter.Checked)
+            {
+                txtFilter.Enabled = true;
+                loadList();
+            }
+            else
+                txtFilter.Enabled = false;
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            PokeServices pokeServices = new PokeServices();
+            dgvPokemon.DataSource = pokeServices.filter(
+                ddlField.SelectedItem.ToString(),
+                ddlCriteria.SelectedItem.ToString(),
+                txtAdFilter.Text,
+                ddlState.SelectedItem.ToString());
             dgvPokemon.DataBind();
         }
     }

@@ -172,13 +172,13 @@ namespace service
             }
         }
 
-        public List<Pokemon> filter(string field, string criteria, string filter)
+        public List<Pokemon> filter(string field, string criteria, string filter, string state)
         {
             List<Pokemon> list = new List<Pokemon>();
             DataAccess data = new DataAccess();
             try
             {
-                string query = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And P.Activo = 1 And ";
+                string query = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id, P.Activo From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And ";
                 switch (field)
                 {
                     case "Number":
@@ -211,7 +211,7 @@ namespace service
                         }
                         break;
 
-                    case "Description":
+                    case "Element":
                         switch (criteria)
                         {
                             case "Starts with":
@@ -229,6 +229,11 @@ namespace service
                     default:
                         break;
                 }
+                if (state == "Active")
+                    query += " And P.Activo = 1";
+                else if (state == "Disabled")
+                    query += " And P.Activo = 0";
+                
 
                 data.setQuery(query);
                 data.runReader();
@@ -248,6 +253,7 @@ namespace service
                     aux.Weakness = new Element();
                     aux.Weakness.Id = (int)data.Reader["IdDebilidad"];
                     aux.Weakness.Description = (string)data.Reader["Debilidad"];
+                    aux.Active = (bool)data.Reader["Activo"];
 
                     list.Add(aux);
                 }
