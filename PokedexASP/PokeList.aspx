@@ -20,31 +20,40 @@
                 {
             %>
             <div class="row align-items-center mb-3">
-                <label class="col-auto col-form-label">Field</label>
-                <div class="col-1">
-                    <asp:DropDownList CssClass="form-control" runat="server">
-                        <asp:ListItem Text="Name" />
-                        <asp:ListItem Text="Number" />
-                        <asp:ListItem Text="Element" />
-                    </asp:DropDownList>
+                <div class="col">
+                    <div class="row align-items-center">
+                        <label class="col-auto col-form-label">Field</label>
+                        <div class="col">
+                            <asp:DropDownList CssClass="form-control" runat="server">
+                                <asp:ListItem Text="Name" />
+                                <asp:ListItem Text="Number" />
+                                <asp:ListItem Text="Element" />
+                            </asp:DropDownList>
+                        </div>
+                        <label class="col-auto col-form-label">Criteria</label>
+                        <div class="col">
+                            <asp:DropDownList CssClass="form-control" runat="server"></asp:DropDownList>
+                        </div>
+                        <label class="col-auto col-form-label">State</label>
+                        <div class="col">
+                            <asp:DropDownList CssClass="form-control" runat="server">
+                                <asp:ListItem Text="Enabled" />
+                                <asp:ListItem Text="Disabled" />
+                                <asp:ListItem Text="All" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
                 </div>
-                <label class="col-auto col-form-label">Criteria</label>
-                <div class="col-1">
-                    <asp:DropDownList CssClass="form-control" runat="server"></asp:DropDownList>
+                <div class="col">
+                    <div class="row align-items-center justify-content-end">
+                        <div class="col-auto">
+                            <asp:TextBox CssClass="col-2 form-control" runat="server" />
+                        </div>
+                        <asp:Button class="col-auto btn btn-dark" Text="Search" runat="server" />
+                    </div>
                 </div>
-                <label class="col-auto col-form-label">State</label>
-                <div class="col-1">
-                    <asp:DropDownList CssClass="form-control" runat="server">
-                        <asp:ListItem Text="Enabled" />
-                        <asp:ListItem Text="Disabled" />
-                        <asp:ListItem Text="All" />
-                    </asp:DropDownList>
-                </div>
-                <div class="col-auto">
-                    <asp:TextBox CssClass="col-auto form-control" runat="server" />
-                </div>
-                <asp:Button class="col-1 btn btn-dark" Text="Search" runat="server" />
             </div>
+
             <% 
                 }
             %>
