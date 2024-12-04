@@ -70,6 +70,20 @@ namespace service
         {
             sqlCommand.Parameters.AddWithValue(name, value);
         }
+        public int executeScalar()
+        {
+            sqlCommand.Connection = connection;
+            try
+            {
+                connection.Open();
+                return int.Parse(sqlCommand.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public void closeConnection()
         {
             if (reader != null)
