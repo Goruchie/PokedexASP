@@ -14,7 +14,7 @@ namespace service
             DataAccess data = new DataAccess();
             try
             {
-                data.setProcedure("insertNew");
+                data.setProcedure("insertarNuevo");
                 data.setParameter("@email", newTrainee.Email);
                 data.setParameter("@pass", newTrainee.Pass);
                 return data.executeScalar();

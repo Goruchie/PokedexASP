@@ -15,10 +15,10 @@ namespace service
         public EmailService() 
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("c83ab849b588a5", "********4b03");
+            server.Credentials = new NetworkCredential("marcosgualtero43253@gmail.com", "vcag lfjg mkjz epzu");
             server.EnableSsl = true;
-            server.Port = 2525;
-            server.Host = "sandbox.smtp.mailtrap.io";
+            server.Port = 587;
+            server.Host = "smtp.gmail.com";
         }
         public void setEmail(string mail, string subject, string body)
         {

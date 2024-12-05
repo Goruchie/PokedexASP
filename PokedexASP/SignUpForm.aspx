@@ -13,7 +13,7 @@
                 <asp:TextBox ID="txtPass" runat="server" CssClass="form-control" placeholder="Password" aria-label="Password" />
             </div>
             <div class="row mb-5">
-                <asp:Button ID="btnSignUp" Text="Sign up" CssClass="btn btn-dark" runat="server" />
+                <asp:Button ID="btnSignUp" Text="Sign up" CssClass="btn btn-dark" runat="server" OnClick="btnSignUp_Click" />
             </div>
         </div>
     </div>
