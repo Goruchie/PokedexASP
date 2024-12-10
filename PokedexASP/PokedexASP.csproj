@@ -71,6 +71,7 @@
     <Content Include="Assets\Images\pokeball.svg" />
     <Content Include="Content\style.css" />
     <Content Include="Details.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="FavoritesForm.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="FavoritesForm.aspx.cs">
       <DependentUpon>FavoritesForm.aspx</DependentUpon>
