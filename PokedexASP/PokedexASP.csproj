@@ -71,9 +71,11 @@
     <Content Include="Assets\Images\pokeball.svg" />
     <Content Include="Content\style.css" />
     <Content Include="Details.aspx" />
+    <Content Include="FavoritesForm.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="LoginForm.aspx" />
+    <Content Include="MyProfile.aspx" />
     <Content Include="PokeForm.aspx" />
     <Content Include="PokeList.aspx" />
     <Content Include="SignUpForm.aspx" />
@@ -86,6 +88,13 @@
     </Compile>
     <Compile Include="Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FavoritesForm.aspx.cs">
+      <DependentUpon>FavoritesForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FavoritesForm.aspx.designer.cs">
+      <DependentUpon>FavoritesForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -110,6 +119,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MyProfile.aspx.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProfile.aspx.designer.cs">
+      <DependentUpon>MyProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="PokeForm.aspx.cs">
       <DependentUpon>PokeForm.aspx</DependentUpon>

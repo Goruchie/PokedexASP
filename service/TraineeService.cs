@@ -29,5 +29,32 @@ namespace service
                 data.closeConnection();
             }
         }
+        public bool login(Trainee trainee)
+        {
+            DataAccess data = new DataAccess();
+            try
+            {
+                data.setQuery("Select email, pass, admin from USUARIOS Where email = @email AND pass = @pass");
+                data.setParameter("@email", trainee.Email);
+                data.setParameter("@pass", trainee.Pass);
+                data.runReader();
+                if (data.Reader.Read())
+                {
+                    trainee.Id = (int)data.Reader["id"];
+                    trainee.Admin = (bool)data.Reader["admin"];
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                data.closeConnection();
+            }
+        }
     }
 }
