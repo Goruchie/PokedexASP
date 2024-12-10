@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using service;
 
 namespace PokedexASP
 {
@@ -11,7 +12,13 @@ namespace PokedexASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!(Page is LoginForm))
+            {
+                if (!SecurityService.sessionActive(Session["trainee"]));
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+            }
         }
     }
 }

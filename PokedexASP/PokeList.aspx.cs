@@ -16,6 +16,11 @@ namespace PokedexASP
         public int DeleteId;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!SecurityService.isAdmin(Session["trainee"]))
+            {
+                Session.Add("error", "Access denied, you are not allowed to access this feature");
+                Response.Redirect("Error.aspx");
+            }
             if (!IsPostBack)
             {
                 ConfirmDelete = false;
