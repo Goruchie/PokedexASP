@@ -34,7 +34,7 @@ namespace service
             DataAccess data = new DataAccess();
             try
             {
-                data.setQuery("Select email, pass, admin from USUARIOS Where email = @email AND pass = @pass");
+                data.setQuery("Select id, email, pass, admin from USUARIOS Where email = @email AND pass = @pass");
                 data.setParameter("@email", trainee.Email);
                 data.setParameter("@pass", trainee.Pass);
                 data.runReader();

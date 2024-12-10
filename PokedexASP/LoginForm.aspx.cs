@@ -31,8 +31,9 @@ namespace PokedexASP
                 }
                 else
                 {
+
                     Session.Add("error", "User or pass incorrect");
-                    Response.Redirect("Error.aspx");
+                    Response.Redirect("Error.aspx", false);
                 }
             }
             catch (Exception ex)

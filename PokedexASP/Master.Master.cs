@@ -12,11 +12,11 @@ namespace PokedexASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(Page is LoginForm))
+            if (!(Page is LoginForm || Page is Error))
             {
-                if (!SecurityService.sessionActive(Session["trainee"]));
+                if (!SecurityService.sessionActive(Session["trainee"]))
                 {
-                    Response.Redirect("Login.aspx", false);
+                    Response.Redirect("LoginForm.aspx", false);
                 }
             }
         }
