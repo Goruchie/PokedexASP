@@ -28,8 +28,23 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/PokeList.aspx">List</a></li>
                     </ul>
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
+                        <%if (!isActive())
+                            {
+                        %>
                         <li class="nav-item"><a class="nav-link" runat="server" href="LoginForm.aspx">Login</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="SignUpForm.aspx">Sign up</a></li>
+                        <%
+                            }
+                        %>
+                        <%if (isActive())
+                            {
+                        %>
+                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="Home.aspx">Log out</a></li>--%>
+                        <asp:Button ID="btnLogOut" CssClass="nav-item btn btn-dark" Text="Log out" runat="server" OnClick="btnLogOut_Click" />
+                        <%
+                            }
+                        %>
+                        
                     </ul>
                 </div>
             </div>
