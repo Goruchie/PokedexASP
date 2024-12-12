@@ -18,3 +18,14 @@ body {
 .pokeImage {
     height: 43vh;
 }
+/*.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 3px;
+}
+
+.image-div {
+    grid-area: 1 / 2 / 6 / 3;
+}*/

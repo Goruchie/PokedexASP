@@ -68,11 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\empty-pokemon.png" />
+    <Content Include="Assets\Images\profile.png" />
     <Content Include="Assets\Images\pokeball.svg" />
     <Content Include="Content\style.css" />
     <Content Include="Details.aspx" />
     <Content Include="Error.aspx" />
-    <Content Include="FavoritesForm.aspx" />
+    <Content Include="Favorites.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="LoginForm.aspx" />
@@ -97,12 +98,12 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FavoritesForm.aspx.cs">
-      <DependentUpon>FavoritesForm.aspx</DependentUpon>
+    <Compile Include="Favorites.aspx.cs">
+      <DependentUpon>Favorites.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FavoritesForm.aspx.designer.cs">
-      <DependentUpon>FavoritesForm.aspx</DependentUpon>
+    <Compile Include="Favorites.aspx.designer.cs">
+      <DependentUpon>Favorites.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
