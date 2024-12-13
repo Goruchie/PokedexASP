@@ -42,6 +42,7 @@
                             {
                         %>
                         <%--<li class="nav-item"><a class="nav-link" runat="server" href="Home.aspx">Log out</a></li>--%>
+                        <asp:Image ID="avatarImg" style="height:40px; width:40px; border-radius:50%" runat="server" />
                         <asp:Button ID="btnLogOut" CssClass="nav-item btn btn-dark" Text="Log out" runat="server" OnClick="btnLogOut_Click" />
                         <%
                             }

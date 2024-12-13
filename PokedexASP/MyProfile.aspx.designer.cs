@@ -42,21 +42,21 @@ namespace PokedexASP
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
 
         /// <summary>
-        /// formFile control.
+        /// txtImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputFile formFile;
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile txtImage;
 
         /// <summary>
-        /// btnAccept control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAccept;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

@@ -9,15 +9,15 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <asp:TextBox runat="server" ID="txtEmail" runat="server" CssClass="form-control" placeholder="name@example.com" aria-label="name@example.com" />
+                    <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" placeholder="name@example.com" aria-label="name@example.com" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Name</label>
-                    <asp:TextBox runat="server" ID="txtName" runat="server" CssClass="form-control" placeholder="Name" aria-label="Name" />                  
+                    <asp:TextBox runat="server" ID="txtName" CssClass="form-control" placeholder="Name" aria-label="Name" />                  
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Last name</label>
-                    <asp:TextBox runat="server" ID="txtLastName" runat="server" CssClass="form-control" placeholder="Your last name" aria-label="Last Name" />   
+                    <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" placeholder="Your last name" aria-label="Last Name" />   
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Birth date</label>                  
@@ -26,11 +26,11 @@
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Profile Picture</label>
-                    <input runat="server" class="form-control" id="formFile" type="file">
+                    <input type="file" id="txtImage" runat="server" class="form-control" />
                 </div>
             </div>
             <div class=" row ">
-                <asp:Button ID="btnAccept" Text="Accept" runat="server" CssClass="btn btn-dark btn-lg me-2 col" />
+                <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-dark btn-lg me-2 col" OnClick="btnSave_Click" />
                 <a class="btn btn-dark btn-lg col" href="/PokeList.aspx">Cancel</a>
             </div>
         </div>
