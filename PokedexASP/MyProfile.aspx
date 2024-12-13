@@ -9,24 +9,24 @@
             <div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    <asp:TextBox runat="server" ID="txtEmail" runat="server" CssClass="form-control" placeholder="name@example.com" aria-label="name@example.com" />
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your name">
+                    <asp:TextBox runat="server" ID="txtName" runat="server" CssClass="form-control" placeholder="Name" aria-label="Name" />                  
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your last name">
+                    <asp:TextBox runat="server" ID="txtLastName" runat="server" CssClass="form-control" placeholder="Your last name" aria-label="Last Name" />   
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Birth date</label>
+                    <label for="exampleFormControlInput1" class="form-label">Birth date</label>                  
                     <input type="date" class="form-control" id="exampleFormControlInput1">
                 </div>
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Profile Picture</label>
-                    <input class="form-control" id="formFile" type="file">
+                    <input runat="server" class="form-control" id="formFile" type="file">
                 </div>
             </div>
             <div class=" row ">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-6">
             <div class="text-center">
-                <img src="Assets/Images/profile.png" class="rounded img-fluid" alt="Profile Picture" style="max-width: 100%; height: auto; max-height: 100%;">
+                <asp:Image ImageUrl="Assets/Images/profile.png" runat="server" CssClass="rounded img-fluid" />
             </div>
         </div>
 
