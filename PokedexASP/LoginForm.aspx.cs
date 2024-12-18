@@ -23,7 +23,7 @@ namespace PokedexASP
             try
             {
                 trainee.Email = txtEmail.Text;
-                trainee.Pass = txtPass.Text;
+                trainee.Pass = txtPass.Text;                
                 if (traineeService.login(trainee))
                 {
                     Session.Add("Trainee", trainee);

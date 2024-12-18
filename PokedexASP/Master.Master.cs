@@ -11,7 +11,6 @@ namespace PokedexASP
 {
     public partial class Master : System.Web.UI.MasterPage
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!(Page is LoginForm || Page is Error || Page is SignUpForm || Page is Home))
@@ -19,6 +18,13 @@ namespace PokedexASP
                 if (!SecurityService.sessionActive(Session["trainee"]))
                 {
                     Response.Redirect("LoginForm.aspx", false);
+                }
+                else
+                {
+                    Trainee trainee = (Trainee)Session["trainee"];
+                    traineeName.InnerText = trainee.Email;
+                    if (!string.IsNullOrEmpty(trainee.ProfileImage))                    
+                        avatarImg.ImageUrl = "~/Assets/Images/" + trainee.ProfileImage;                    
                 }
             }
             if (SecurityService.sessionActive(Session["trainee"]))

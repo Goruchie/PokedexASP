@@ -34,7 +34,7 @@ namespace service
             DataAccess data = new DataAccess();
             try
             {
-                data.setQuery("Select id, email, pass, admin, ImagenPerfil from USUARIOS Where email = @email AND pass = @pass");
+                data.setQuery("Select id, email, pass, Nombre, Apellido, FechaNacimiento, admin, ImagenPerfil from USUARIOS Where email = @email AND pass = @pass");
                 data.setParameter("@email", trainee.Email);
                 data.setParameter("@pass", trainee.Pass);
                 data.runReader();
@@ -42,6 +42,12 @@ namespace service
                 {
                     trainee.Id = (int)data.Reader["id"];
                     trainee.Admin = (bool)data.Reader["admin"];
+                    if (!(data.Reader["Nombre"] is DBNull))
+                        trainee.Name = (string)data.Reader["Nombre"];
+                    if (!(data.Reader["Apellido"] is DBNull))
+                        trainee.LastName = (string)data.Reader["Apellido"];
+                    if (!(data.Reader["FechaNacimiento"] is DBNull))
+                        trainee.Date = DateTime.Parse(data.Reader["FechaNacimiento"].ToString());
                     if (!(data.Reader["ImagenPerfil"] is DBNull))
                         trainee.ProfileImage = (string)data.Reader["ImagenPerfil"];
 
@@ -64,8 +70,11 @@ namespace service
             DataAccess data = new DataAccess();
             try
             {
-                data.setQuery("Update USUARIOS set ImagenPerfil = @imagen where id = @id");
-                data.setParameter("@imagen", trainee.ProfileImage);
+                data.setQuery("Update USUARIOS set ImagenPerfil = @imagen, Nombre = @name, Apellido = @lastname, FechaNacimiento = @date where id = @id");
+                data.setParameter("@imagen", (object)trainee.ProfileImage ?? DBNull.Value);
+                data.setParameter("@name", trainee.Name);
+                data.setParameter("@lastname", trainee.LastName);
+                data.setParameter("@date", trainee.Date);
                 data.setParameter("@id", trainee.Id);
                 data.runReader();
             }

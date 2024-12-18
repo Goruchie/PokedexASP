@@ -20,8 +20,8 @@
                     <asp:TextBox runat="server" ID="txtLastName" CssClass="form-control" placeholder="Your last name" aria-label="Last Name" />   
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Birth date</label>                  
-                    <input type="date" class="form-control" id="exampleFormControlInput1">
+                    <label class="form-label">Birth date</label>                  
+                    <asp:TextBox ID="txtBirthDate" runat="server" TextMode="Date"/>
                 </div>
 
                 <div class="mb-3">
@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-6">
             <div class="text-center">
-                <asp:Image ImageUrl="Assets/Images/profile.png" runat="server" CssClass="rounded img-fluid" />
+                <asp:Image ID="profileImage" ImageUrl="Assets/Images/profile.png" runat="server" CssClass="rounded img-fluid" />
             </div>
         </div>
 

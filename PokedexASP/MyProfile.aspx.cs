@@ -13,6 +13,25 @@ namespace PokedexASP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+
+            if (SecurityService.sessionActive(Session["trainee"]))
+            {
+                Trainee trainee = (Trainee)Session["trainee"];
+                if (trainee.Date != null)
+                    txtBirthDate.Text = trainee.Date.ToString("yyyy-MM-dd");
+                if (trainee.Name != null)
+                    txtName.Text = trainee.Name;
+                if (trainee.LastName != null)
+                    txtLastName.Text = trainee.LastName;
+                if (trainee.Email != null)
+                    txtEmail.Text = trainee.Email;
+                if (!string.IsNullOrEmpty(trainee.ProfileImage))
+                    profileImage.ImageUrl = "~/Assets/Images/" + trainee.ProfileImage;
+            }
+            }
+
 
         }
 
@@ -21,10 +40,17 @@ namespace PokedexASP
             try
             {
                 TraineeService traineeService = new TraineeService();
-                string ruta = Server.MapPath("./Assets/Images/");
                 Trainee trainee = (Trainee)Session["trainee"];
-                txtImage.PostedFile.SaveAs(ruta + "profile-" + trainee.Id + ".jpg");
-                trainee.ProfileImage = "profile-" + trainee.Id + ".jpg";
+                if (txtImage.PostedFile.FileName != "")
+                {
+                    string ruta = Server.MapPath("./Assets/Images/");
+                    txtImage.PostedFile.SaveAs(ruta + "profile-" + trainee.Id + ".png");
+                    trainee.ProfileImage = "profile-" + trainee.Id + ".png";
+                }
+                trainee.Name = txtName.Text;
+                trainee.LastName = txtLastName.Text;
+                trainee.Date = DateTime.Parse(txtBirthDate.Text);
+
                 traineeService.update(trainee);
                 Image img = (Image)Master.FindControl("avatarImg");
                 img.ImageUrl = "~/Images/Assets/" + trainee.ProfileImage;
@@ -33,7 +59,7 @@ namespace PokedexASP
             {
                 Session.Add("error", ex.ToString());
             }
-            
+
 
         }
     }

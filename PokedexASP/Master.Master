@@ -29,7 +29,7 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Favorites.aspx">Favorites</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/MyProfile.aspx">My Profile</a></li>
                     </ul>
-                    <ul class="navbar-nav flex-grow-1 justify-content-end">
+                    <ul class="navbar-nav flex-grow-1 justify-content-end d-flex align-items-center">
                         <%if (!isActive())
                             {
                         %>
@@ -42,12 +42,12 @@
                             {
                         %>
                         <%--<li class="nav-item"><a class="nav-link" runat="server" href="Home.aspx">Log out</a></li>--%>
-                        <asp:Image ID="avatarImg" style="height:40px; width:40px; border-radius:50%" runat="server" />
+                        <asp:Image ID="avatarImg" Style="height: 40px; width: 40px; border-radius: 50%" runat="server" />
+                        <li class="ms-2 text-white align-middle" runat="server" id="traineeName"></li>
                         <asp:Button ID="btnLogOut" CssClass="nav-item btn btn-dark" Text="Log out" runat="server" OnClick="btnLogOut_Click" />
                         <%
                             }
                         %>
-                        
                     </ul>
                 </div>
             </div>
